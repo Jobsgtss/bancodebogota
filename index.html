@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Banco de Bogotá - Portal de Capacitación Virtual</title>
+  <title>Banco de Bogotá - Centro de Capacitación y Educación Financiera</title>
   <style>
     :root {
       --azul-bogota: #002d62;
@@ -47,6 +47,31 @@
       letter-spacing: 1px;
     }
 
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 12px;
+    }
+
+    nav button {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    nav button:hover, nav button.active {
+      background-color: var(--amarillo-bogota);
+      color: black;
+      font-weight: bold;
+      border-color: var(--amarillo-bogota);
+    }
+
     .container {
       max-width: 950px;
       margin: 2rem auto;
@@ -68,7 +93,6 @@
       grid-column: 1 / -1;
     }
 
-    /* Caja de Asistente de Aprendizaje */
     .asistente-card {
       background-color: #e8f4fd;
       border-left: 5px solid var(--azul-bogota);
@@ -79,7 +103,6 @@
     .asistente-card h4 { margin: 0 0 0.5rem 0; color: var(--azul-bogota); }
     .asistente-card p { margin: 0; font-size: 0.9rem; line-height: 1.4; }
 
-    /* Consejos de seguridad */
     .tip-seguridad {
       background-color: #fff3cd;
       border: 1px solid #ffeeba;
@@ -109,7 +132,7 @@
       font-size: 0.95rem;
     }
 
-    button {
+    .btn-main {
       width: 100%;
       background-color: var(--azul-bogota);
       color: white;
@@ -121,7 +144,7 @@
       cursor: pointer;
     }
 
-    button:hover { background-color: var(--azul-oscuro); }
+    .btn-main:hover { background-color: var(--azul-oscuro); }
 
     .mensaje {
       margin-top: 1rem;
@@ -148,7 +171,32 @@
       font-size: 0.88rem;
     }
 
-    #dashboardApp { display: none; }
+    /* Modulos de vista */
+    .modulo-seccion { display: none; }
+    #loginModulo { display: block; }
+
+    /* Estilos para el centro de aprendizaje */
+    .leccion-box {
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: #fafafa;
+    }
+    .leccion-box h4 { margin-top: 0; color: var(--azul-bogota); }
+
+    /* Estilos para el Quiz */
+    .pregunta-quiz { margin-bottom: 1.5rem; }
+    .opciones-quiz label {
+      font-weight: normal;
+      display: block;
+      margin-bottom: 0.5rem;
+      background: #f0f4f8;
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .opciones-quiz label:hover { background: #e2eaf4; }
 
     footer {
       text-align: center;
@@ -164,29 +212,34 @@
 <body>
 
   <div class="banner-simulacion">
-    PORTAL EDUCATIVO DE CAPACITACIÓN — ENTRENAMIENTO DE BANCA EN LÍNEA
+    PORTAL DE EDUCACIÓN FINANCIERA Y ENTRENAMIENTO DIGITAL — PLATAFORMA EDUCATIVA
   </div>
 
   <header>
-    <div class="logo">BANCO DE BOGOTÁ <span style="font-size:0.7rem; color:var(--amarillo-bogota);">(CENTRO DE APRENDIZAJE)</span></div>
-    <div id="usuarioHeader">Estado: En Capacitación</div>
+    <div class="logo">BANCO DE BOGOTÁ <span style="font-size:0.7rem; color:var(--amarillo-bogota);">(CAMPUS DIGITAL)</span></div>
+    <nav>
+      <ul>
+        <li><button id="navLogin" class="active" onclick="mostrarSeccion('loginModulo', 'navLogin')">Ingreso</button></li>
+        <li><button id="navDashboard" onclick="mostrarSeccion('dashboardApp', 'navDashboard')">Simulador</button></li>
+        <li><button id="navAprender" onclick="mostrarSeccion('aprenderModulo', 'navAprender')">Guías de Aprendizaje</button></li>
+        <li><button id="navQuiz" onclick="mostrarSeccion('quizModulo', 'navQuiz')">Evaluación / Quiz</button></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="container" id="loginModulo">
+  <!-- SECCIÓN 1: INGRESO / REGISTRO AL ENTRENAMIENTO -->
+  <div class="container modulo-seccion" id="loginModulo">
     <div class="card full-width" style="max-width: 500px; margin: 1rem auto;">
-      
       <div class="asistente-card">
         <h4>💡 Paso 1: Práctica de Inicio de Sesión Seguro</h4>
-        <p>Aprende a ingresar a la Banca Virtual. En el portal real, verifica siempre que la dirección en el navegador comience con <strong>https://</strong> y que tenga el candado de seguridad.</p>
+        <p>En la banca real, verifica siempre que la dirección en tu navegador empiece con <strong>https://</strong> y que tenga el ícono del candado cerrado.</p>
       </div>
 
-      <h3>Aprende a Ingresar</h3>
-      
+      <h3>Iniciar Sesión de Capacitación</h3>
       <div class="form-group">
-        <label for="nombreCliente">Nombre del Usuario Practicante:</label>
-        <input type="text" id="nombreCliente" placeholder="Ej. Ana María Gómez">
+        <label for="nombreCliente">Nombre Completo del Aprendiz:</label>
+        <input type="text" id="nombreCliente" placeholder="Ej. Carlos Mendoza">
       </div>
-      
       <div class="form-group">
         <label for="tipoDoc">Tipo de Documento:</label>
         <select id="tipoDoc">
@@ -195,40 +248,42 @@
           <option>Cédula de Extranjería</option>
         </select>
       </div>
-
       <div class="form-group">
-        <label for="claveSimulada">Clave Segura (Simulación):</label>
+        <label for="claveSimulada">Clave de Entrenamiento (Simulación):</label>
         <input type="password" id="claveSimulada" placeholder="••••••••">
       </div>
 
-      <button onclick="iniciarSesionSimulada()">Iniciar Práctica Guiada</button>
+      <button class="btn-main" onclick="iniciarSesionSimulada()">Ingresar al Entorno de Práctica</button>
 
       <div class="tip-seguridad">
-        <strong>🔒 Regla de Oro de Seguridad:</strong> El Banco nunca te pedirá tu clave secreta ni tus códigos de seguridad por teléfono, correo electrónico o mensajes de texto.
+        <strong>🔒 Consejo de Ciberseguridad:</strong> Nunca compartas contraseñas, claves dinámicas ni códigos OTP recibidos en tu teléfono con nadie. El Banco jamás te llamará para pedírtelos.
       </div>
     </div>
   </div>
 
-  <div class="container" id="dashboardApp">
+  <!-- SECCIÓN 2: SIMULADOR INTERACTIVO DE BANCA EN LÍNEA -->
+  <div class="container modulo-seccion" id="dashboardApp">
     
     <div class="card full-width asistente-card" id="cajaGuia">
       <h4 id="tituloGuia">💡 Asistente Virtual: ¡Bienvenido al Panel de Práctica!</h4>
-      <p id="textoGuia">Aquí puedes practicar de forma segura cómo gestionar tus productos bancarios. Selecciona cualquiera de los módulos para aprender a hacer transferencias, pagar facturas o simular inversiones.</p>
+      <p id="textoGuia">Prueba de forma segura las funciones de la banca en línea. Selecciona una de las tarjetas para realizar una transferencia, pagar facturas o simular ahorro e inversión.</p>
     </div>
 
+    <!-- Resumen de Saldo -->
     <div class="card full-width">
-      <div class="saldo-label">Usuario en Práctica: <strong id="nombreDisplay">Cliente</strong> — Cuenta de Ahorros Simulada</div>
+      <div class="saldo-label">Cuenta de Ahorros Simulada — <strong id="nombreDisplay">Usuario</strong></div>
       <div class="saldo-monto" id="saldoDisplay">$ 3.500.000</div>
-      <small style="color: #888;">Nº de cuenta: ** 8821 | Estado: Modo Demostración</small>
+      <small style="color: #888;">Nº de cuenta: ** 8821 | Estado de Tarjeta: <span id="estadoTarjetaTexto" style="color:green; font-weight:bold;">ACTIVA</span></small>
     </div>
 
+    <!-- Módulo 1: Transacciones -->
     <div class="card">
-      <h3>1. Transferir o Retirar</h3>
-      <p style="font-size:0.8rem; color:#666;">Aprende cómo mover fondos de tu cuenta de ahorros.</p>
+      <h3>1. Transferencias y Retiros</h3>
+      <p style="font-size:0.8rem; color:#666;">Aprende cómo mover fondos de manera eficiente.</p>
       <div class="form-group">
-        <label for="tipoOperacion">Operación:</label>
+        <label for="tipoOperacion">Tipo de Operación:</label>
         <select id="tipoOperacion">
-          <option value="retiro">Retiro en Cajero (Código Digital)</option>
+          <option value="retiro">Retiro en Cajero sin Tarjeta</option>
           <option value="transferencia">Transferencia a otra cuenta</option>
         </select>
       </div>
@@ -236,65 +291,61 @@
         <label for="monto">Monto ($ COP):</label>
         <input type="number" id="monto" placeholder="Ej. 100000" min="1">
       </div>
-      <button onclick="ejecutarOperacion()">Probar Transacción</button>
+      <button class="btn-main" onclick="ejecutarOperacion()">Ejecutar Operación</button>
       <div id="mensajeAlerta" class="mensaje"></div>
     </div>
 
+    <!-- Módulo 2: Pago de Servicios -->
     <div class="card">
-      <h3>2. Pago de Servicios Públicos</h3>
-      <p style="font-size:0.8rem; color:#666;">Practica el pago de servicios sin hacer filas.</p>
+      <h3>2. Pago de Facturas</h3>
+      <p style="font-size:0.8rem; color:#666;">Practica pagar servicios públicos desde casa.</p>
       <div class="form-group">
         <label for="servicioSelect">Factura a Pagar:</label>
         <select id="servicioSelect">
           <option value="Energía / Luz">Energía / Luz ($85.000)</option>
           <option value="Acueducto / Agua">Acueducto / Agua ($45.000)</option>
-          <option value="Internet / Gas">Internet y Hogar ($120.000)</option>
+          <option value="Internet / Gas">Internet y Televisión ($120.000)</option>
         </select>
       </div>
-      <button onclick="pagarServicio()" style="background-color: #17a2b8;">Pagar Factura</button>
+      <button class="btn-main" onclick="pagarServicio()" style="background-color: #17a2b8;">Pagar Factura</button>
       <div id="mensajeServicio" class="mensaje"></div>
     </div>
 
+    <!-- Módulo 3: Calculadora de CDT -->
     <div class="card">
-      <h3>3. Simular Ahorro en CDT</h3>
-      <p style="font-size:0.8rem; color:#666;">Descubre cuánto dinero puedes ganar al poner tu capital a rentar.</p>
+      <h3>3. Simular Inversión (CDT)</h3>
+      <p style="font-size:0.8rem; color:#666;">Pon tu dinero a rentar con una tasa fija.</p>
       <div class="form-group">
         <label for="montoCDT">Monto a invertir ($ COP):</label>
         <input type="number" id="montoCDT" placeholder="Ej. 500000">
       </div>
       <div class="form-group">
-        <label for="plazo">Plazo estimado:</label>
+        <label for="plazo">Plazo de la inversión:</label>
         <select id="plazo">
           <option value="3">3 Meses (Tasa 8.0% EA)</option>
           <option value="6">6 Meses (Tasa 9.5% EA)</option>
           <option value="12">12 Meses (Tasa 11.0% EA)</option>
         </select>
       </div>
-      <button onclick="calcularCDT()" style="background-color: #28a745;">Calcular Rentabilidad</button>
+      <button class="btn-main" onclick="calcularCDT()" style="background-color: #28a745;">Calcular Rentabilidad</button>
       <div id="resultadoCDT" class="mensaje exito"></div>
     </div>
 
+    <!-- Módulo 4: Seguridad y Bloqueo de Tarjeta -->
     <div class="card">
-      <h3>4. Simular Crédito de Libre Inversión</h3>
-      <p style="font-size:0.8rem; color:#666;">Calcula de cuánto serían tus cuotas mensuales para un préstamo.</p>
-      <div class="form-group">
-        <label for="montoPrestamo">Monto a solicitar ($ COP):</label>
-        <input type="number" id="montoPrestamo" placeholder="Ej. 5000000">
+      <h3>4. Control de Seguridad de Tarjeta</h3>
+      <p style="font-size:0.8rem; color:#666;">Practica el apagado temporal o bloqueo preventivo de tu tarjeta.</p>
+      <div style="margin-top: 1.5rem;">
+        <button id="btnToggleTarjeta" class="btn-main" onclick="toggleTarjeta()" style="background-color: #dc3545;">Apagar / Apagar Tarjeta Temporalmente</button>
       </div>
-      <div class="form-group">
-        <label for="cuotasPrestamo">Plazo de cuotas:</label>
-        <select id="cuotasPrestamo">
-          <option value="12">12 Cuotas mensuales</option>
-          <option value="24">24 Cuotas mensuales</option>
-          <option value="36">36 Cuotas mensuales</option>
-        </select>
+      <div id="mensajeTarjeta" class="mensaje" style="display:block; background:#f8f9fa; border:1px solid #ccc; color:#333;">
+        Estado actual: La tarjeta se encuentra disponible para compras.
       </div>
-      <button onclick="calcularPrestamo()" style="background-color: #6f42c1;">Calcular Cuota</button>
-      <div id="resultadoPrestamo" class="mensaje exito"></div>
     </div>
 
+    <!-- Historial -->
     <div class="card full-width">
-      <h3>Historial de Operaciones de Práctica</h3>
+      <h3>Historial de Operaciones en el Entrenamiento</h3>
       <ul class="historial-lista" id="listaHistorial">
         <li><span>Inicio de la sesión guiada</span> <strong>+ $ 3.500.000</strong></li>
       </ul>
@@ -302,15 +353,104 @@
 
   </div>
 
+  <!-- SECCIÓN 3: CENTRO DE GUÍAS Y EDUCACIÓN FINANCIERA -->
+  <div class="container modulo-seccion" id="aprenderModulo">
+    
+    <div class="card full-width">
+      <h2>📚 Centro de Capacitación y Educación Financiera</h2>
+      <p>Aprende conceptos fundamentales para manejar tu dinero con responsabilidad y protegerte de fraude digital.</p>
+
+      <div class="leccion-box">
+        <h4>🔐 Lección 1: ¿Cómo identificar el Phishing (Estafas por internet)?</h4>
+        <p>El <strong>phishing</strong> ocurre cuando estafadores envían correos o mensajes falsos imitando al banco para robar tus datos. Recuerda:</p>
+        <ul>
+          <li>Revisa la dirección del remitente: debe terminar en el dominio oficial del banco.</li>
+          <li>Los bancos no incluyen enlaces directos en mensajes de texto solicitando actualizar datos.</li>
+          <li>Nunca compartas tu número de tarjeta completo, código CVV ni contraseña por ningún enlace enviado a tu celular.</li>
+        </ul>
+      </div>
+
+      <div class="leccion-box">
+        <h4>💰 Lección 2: La Regla del Presupuesto 50 / 30 / 20</h4>
+        <p>Una manera sencilla y efectiva de administrar tus ingresos mensuales:</p>
+        <ul>
+          <li><strong>50% para Necesidades Básicas:</strong> Arriendo, servicios públicos, mercado y transporte.</li>
+          <li><strong>30% para Deseos o Entretenimiento:</strong> Salidas, hobbies, viajes y compras personales.</li>
+          <li><strong>20% para Ahorro o Inversión:</strong> Fondo de emergencia, CDT o pago de deudas.</li>
+        </ul>
+      </div>
+
+      <!-- Calculadora Interactiva 50/30/20 -->
+      <div class="card" style="background:#f4f6f9; margin-top:1rem;">
+        <h4>🧮 Simula tu Presupuesto 50 / 30 / 20</h4>
+        <div class="form-group">
+          <label for="ingresoPresupuesto">Tus Ingresos Mensuales ($ COP):</label>
+          <input type="number" id="ingresoPresupuesto" placeholder="Ej. 2000000">
+        </div>
+        <button class="btn-main" onclick="calcularPresupuesto()">Calcular Distribución</button>
+        <div id="resultadoPresupuesto" class="mensaje exito" style="margin-top:1rem;"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SECCIÓN 4: QUIZ / TEST DE CONOCIMIENTOS -->
+  <div class="container modulo-seccion" id="quizModulo">
+    <div class="card full-width">
+      <h2>📝 Test de Evaluación: Seguridad y Uso Bancario</h2>
+      <p>Responde estas 3 preguntas para validar tus conocimientos adquiridos en la plataforma.</p>
+
+      <div class="pregunta-quiz">
+        <p><strong>1. Si recibes una llamada informando que debes dar tu clave dinámica para desbloquear tu cuenta, ¿qué debes hacer?</strong></p>
+        <div class="opciones-quiz">
+          <label><input type="radio" name="p1" value="incorrecta"> Dar el código rápido para no perder la cuenta.</label>
+          <label><input type="radio" name="p1" value="correcta"> Colgar de inmediato. El banco nunca pide claves por llamada.</label>
+          <label><input type="radio" name="p1" value="incorrecta"> Pedirle el nombre a la persona y darle solo la mitad de la clave.</label>
+        </div>
+      </div>
+
+      <div class="pregunta-quiz">
+        <p><strong>2. ¿Qué porcentaje de tus ingresos se sugiere destinar al ahorro en la regla 50/30/20?</strong></p>
+        <div class="opciones-quiz">
+          <label><input type="radio" name="p2" value="incorrecta"> El 50% de todos mis ingresos.</label>
+          <label><input type="radio" name="p2" value="correcta"> El 20% destinado al ahorro o fondo de reserva.</label>
+          <label><input type="radio" name="p2" value="incorrecta"> No hace falta ahorrar si invierto en entretenimiento.</label>
+        </div>
+      </div>
+
+      <div class="pregunta-quiz">
+        <p><strong>3. ¿Qué beneficio principal ofrece un CDT?</strong></p>
+        <div class="opciones-quiz">
+          <label><input type="radio" name="p3" value="correcta"> Genera rendimientos o ganancias fijas durante un plazo determinado.</label>
+          <label><input type="radio" name="p3" value="incorrecta"> Permite retirar dinero de cajeros sin cobrar comisiones.</label>
+          <label><input type="radio" name="p3" value="incorrecta"> Sirve para pagar la factura de energía de forma automática.</label>
+        </div>
+      </div>
+
+      <button class="btn-main" onclick="evaluarQuiz()">Enviar y Calificar Test</button>
+      <div id="resultadoQuiz" class="mensaje" style="margin-top:1rem;"></div>
+    </div>
+  </div>
+
   <footer>
-    <p><strong>PROTOTIPO EDUCATIVO:</strong> Diseñado exclusivamente para capacitación y aprendizaje de la interfaz de usuario. No almacena información ni procesa transacciones monetarias reales.</p>
+    <p><strong>SITIO WEB EDUCATIVO DE SIMULACIÓN:</strong> Desarrollado con fines exclusivamente académicos y de capacitación. No maneja transacciones financieras ni almacena información privada sensible.</p>
   </footer>
 
   <script>
     let saldoActual = 3500000;
+    let tarjetaEncendida = true;
 
     function formatearCOP(valor) {
       return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(valor);
+    }
+
+    function mostrarSeccion(idSeccion, idBoton) {
+      document.querySelectorAll('.modulo-seccion').forEach(sec => sec.style.display = 'none');
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(idSeccion).style.display = idSeccion === 'dashboardApp' ? 'grid' : 'block';
+      document.getElementById(idBoton).classList.add('active');
     }
 
     function actualizarGuia(titulo, mensaje) {
@@ -321,17 +461,16 @@
     function iniciarSesionSimulada() {
       const nombre = document.getElementById('nombreCliente').value.trim();
       if (!nombre) {
-        alert("Por favor, ingresa tu nombre para personalizar el entrenamiento.");
+        alert("Ingresa tu nombre para personalizar tu ruta de entrenamiento.");
         return;
       }
-      document.getElementById('loginModulo').style.display = 'none';
-      document.getElementById('dashboardApp').style.display = 'grid';
       document.getElementById('nombreDisplay').textContent = nombre;
-      document.getElementById('usuarioHeader').textContent = Practicante: ${nombre};
+      
+      mostrarSeccion('dashboardApp', 'navDashboard');
 
       actualizarGuia(
-        ¡Excelente, ${nombre}!,
-        "Has completado la prueba de inicio de sesión. Ahora explora las opciones de transferencia, pago de servicios o cálculos de inversión en la parte inferior."
+        ¡Bienvenido a la práctica, ${nombre}!,
+        "Explora libremente las opciones del simulador para comprender el funcionamiento de la banca virtual."
       );
     }
 
@@ -346,6 +485,11 @@
     }
 
     function ejecutarOperacion() {
+      if (!tarjetaEncendida) {
+        alert("Tu tarjeta está desactivada temporalmente por seguridad. Enciéndela en el Módulo 4 para operar.");
+        return;
+      }
+
       const inputMonto = document.getElementById('monto');
       const tipo = document.getElementById('tipoOperacion').value;
       const mensajeDiv = document.getElementById('mensajeAlerta');
@@ -354,14 +498,14 @@
       mensajeDiv.style.display = 'none';
 
       if (isNaN(monto) || monto <= 0) {
-        mensajeDiv.textContent = 'Ingresa un monto válido para practicar.';
+        mensajeDiv.textContent = 'Por favor, ingresa un monto válido.';
         mensajeDiv.className = 'mensaje error';
         mensajeDiv.style.display = 'block';
         return;
       }
 
       if (monto > saldoActual) {
-        mensajeDiv.textContent = 'En la vida real, no puedes transferir más dinero del saldo disponible.';
+        mensajeDiv.textContent = 'Fondos insuficientes para procesar la transacción.';
         mensajeDiv.className = 'mensaje error';
         mensajeDiv.style.display = 'block';
         return;
@@ -370,21 +514,23 @@
       saldoActual -= monto;
       document.getElementById('saldoDisplay').textContent = formatearCOP(saldoActual);
       
-      const textoOp = tipo === 'retiro' ? 'Retiro en cajero (Práctica)' : 'Transferencia realizada (Práctica)';
+      const textoOp = tipo === 'retiro' ? 'Retiro programado' : 'Transferencia procesada';
       registrarMovimiento(textoOp, monto, true);
 
-      mensajeDiv.textContent = Operación exitosa. Tu nuevo saldo es: ${formatearCOP(saldoActual)};
+      mensajeDiv.textContent = Operación exitosa. Nuevo saldo: ${formatearCOP(saldoActual)};
       mensajeDiv.className = 'mensaje exito';
       mensajeDiv.style.display = 'block';
       inputMonto.value = '';
 
-      actualizarGuia(
-        "Transacción completada",
-        "Has aprendido cómo se descuenta el saldo al realizar una transferencia o retiro. El movimiento quedó guardado en tu historial inferior."
-      );
+      actualizarGuia("Transacción Realizada", "El monto ha sido descontado correctamente de tu saldo ficticio.");
     }
 
     function pagarServicio() {
+      if (!tarjetaEncendida) {
+        alert("Tu tarjeta está apaga por seguridad. Enciéndela para pagar facturas.");
+        return;
+      }
+
       const combo = document.getElementById('servicioSelect');
       const servicio = combo.value;
       const mensajeDiv = document.getElementById('mensajeServicio');
@@ -402,16 +548,13 @@
 
       saldoActual -= costo;
       document.getElementById('saldoDisplay').textContent = formatearCOP(saldoActual);
-      registrarMovimiento(Pago de factura (${servicio}), costo, true);
+      registrarMovimiento(Pago de servicio (${servicio}), costo, true);
 
-      mensajeDiv.textContent = Servicio de ${servicio} pagado exitosamente.;
+      mensajeDiv.textContent = Pago de ${servicio} procesado correctamente.;
       mensajeDiv.className = 'mensaje exito';
       mensajeDiv.style.display = 'block';
 
-      actualizarGuia(
-        "Pago de Facturas",
-        Pagaste exitosamente ${servicio}. Pagar tus servicios a tiempo desde la banca virtual evita cortes del servicio e intereses por mora.
-      );
+      actualizarGuia("Factura Pagada", El pago del servicio ${servicio} se registró en tu historial.);
     }
 
     function calcularCDT() {
@@ -420,7 +563,7 @@
       const resDiv = document.getElementById('resultadoCDT');
 
       if (isNaN(monto) || monto < 100000) {
-        alert('Ingresa al menos $100.000 para simular la inversión.');
+        alert('Ingresa un monto mínimo de $100.000 COP.');
         return;
       }
 
@@ -431,35 +574,77 @@
       const gananciaEstimada = monto * (tasaAnual * (plazoMeses / 12));
       const totalAlFinal = monto + gananciaEstimada;
 
-      resDiv.innerHTML = Ganancia estimada: <strong>${formatearCOP(gananciaEstimada)}</strong><br>Total acumulado al final: ${formatearCOP(totalAlFinal)};
+      resDiv.innerHTML = Ganancia estimada: <strong>${formatearCOP(gananciaEstimada)}</strong><br>Monto final a recibir: ${formatearCOP(totalAlFinal)};
       resDiv.style.display = 'block';
-
-      actualizarGuia(
-        "Simulación de Inversión",
-        "Un CDT guarda tu dinero durante el plazo elegido y te paga un rendimiento garantizado al finalizar el tiempo estipulado."
-      );
     }
 
-    function calcularPrestamo() {
-      const monto = parseFloat(document.getElementById('montoPrestamo').value);
-      const meses = parseInt(document.getElementById('cuotasPrestamo').value);
-      const resDiv = document.getElementById('resultadoPrestamo');
+    function toggleTarjeta() {
+      tarjetaEncendida = !tarjetaEncendida;
+      const btn = document.getElementById('btnToggleTarjeta');
+      const msg = document.getElementById('mensajeTarjeta');
+      const textoEstado = document.getElementById('estadoTarjetaTexto');
 
-      if (isNaN(monto) || monto < 500000) {
-        alert('Ingresa un monto válido para la simulación.');
+      if (tarjetaEncendida) {
+        btn.textContent = "Apagar Tarjeta Temporamente";
+        btn.style.backgroundColor = "#dc3545";
+        msg.textContent = "Estado actual: La tarjeta está ENCENDIDA y activa para compras.";
+        textoEstado.textContent = "ACTIVA";
+        textoEstado.style.color = "green";
+      } else {
+        btn.textContent = "Encender Tarjeta";
+        btn.style.backgroundColor = "#28a745";
+        msg.textContent = "Estado actual: La tarjeta está APAGADA por seguridad. Ninguna transacción será procesada.";
+        textoEstado.textContent = "APAGADA / BLOQUEADA";
+        textoEstado.style.color = "red";
+      }
+    }
+
+    function calcularPresupuesto() {
+      const ingreso = parseFloat(document.getElementById('ingresoPresupuesto').value);
+      const divRes = document.getElementById('resultadoPresupuesto');
+
+      if (isNaN(ingreso) || ingreso <= 0) {
+        alert("Ingresa un monto de dinero válido.");
         return;
       }
 
-      const tasaMensual = 0.015;
-      const cuota = (monto * tasaMensual) / (1 - Math.pow(1 + tasaMensual, -meses));
+      const necesidades = ingreso * 0.50;
+      const deseos = ingreso * 0.30;
+      const ahorro = ingreso * 0.20;
 
-      resDiv.innerHTML = Cuota mensual estimada: <strong>${formatearCOP(cuota)}</strong> a ${meses} meses.;
-      resDiv.style.display = 'block';
+      divRes.innerHTML = `
+        <strong>Distribución sugerida:</strong><br>
+        🏠 Necesidades (50%): ${formatearCOP(necesidades)}<br>
+        🎯 Deseos y Gustos (30%): ${formatearCOP(deseos)}<br>
+        🐖 Ahorro o Inversión (20%): ${formatearCOP(ahorro)}
+      `;
+      divRes.style.display = 'block';
+    }
 
-      actualizarGuia(
-        "Simulación de Crédito",
-        Al solicitar un crédito de ${formatearCOP(monto)}, pagarás esa cuota fija cada mes durante el plazo elegido.
-      );
+    function evaluarQuiz() {
+      const p1 = document.querySelector('input[name="p1"]:checked');
+      const p2 = document.querySelector('input[name="p2"]:checked');
+      const p3 = document.querySelector('input[name="p3"]:checked');
+      const resQuiz = document.getElementById('resultadoQuiz');
+
+      if (!p1 || !p2 || !p3) {
+        alert("Por favor, responde las 3 preguntas antes de calificar.");
+        return;
+      }
+
+      let puntaje = 0;
+      if (p1.value === 'correcta') puntaje++;
+      if (p2.value === 'correcta') puntaje++;
+      if (p3.value === 'correcta') puntaje++;
+
+      if (puntaje === 3) {
+        resQuiz.className = "mensaje exito";
+        resQuiz.innerHTML = "🎉 ¡Excelente trabajo! Obtuviste 3/3 respuestas correctas. Estás listo para usar la banca virtual con seguridad.";
+      } else {
+        resQuiz.className = "mensaje error";
+        resQuiz.innerHTML = Obtuviste ${puntaje}/3 respuestas correctas. Te sugerimos repasar la sección de 'Guías de Aprendizaje' e intentarlo de nuevo.;
+      }
+      resQuiz.style.display = 'block';
     }
   </script>
 </body>
