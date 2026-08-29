@@ -20,5 +20,5 @@ app.get(/.*/, (_req, res) => {
 })
 
 app.listen(port, '0.0.0.0', () => {
-  console.log(`Moro listening on ${port}`)
+  console.log(`Bogotá listening on ${port}`)
 })
